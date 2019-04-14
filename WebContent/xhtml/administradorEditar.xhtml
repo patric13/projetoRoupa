@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+	<ui:define name="titulo">Editar ResponsavelEmpresa</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<h:inputHidden id="idUsuario" value="#{administradorMB.administrador.id}" />
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="CPF:" for="cpf"></h:outputLabel>
+				<p:inputText size="50" id="cpf" value="#{administradorMB.administrador.cpf}"
+					required="true" requiredMessage="O Campo cpf é obrigatório."></p:inputText>
+
+				<h:outputLabel value="Nome:" for="nome"></h:outputLabel>
+				<p:inputText size="50" id="nome" value="#{administradorMB.administrador.nome}"
+					required="true" requiredMessage="O Campo nome é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Email" for="email"></h:outputLabel>
+				<p:inputText size="50" id="email" value="#{administradorMB.administrador.email}"
+					required="true" requiredMessage="O Campo Email é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Logradouro:" for="logradouro"></h:outputLabel>
+				<p:inputText size="50" id="logradouro" value="#{administradorMB.administrador.logradouro}"
+					required="true" requiredMessage="O Campo logradouro é obrigatório."></p:inputText>
+					
+						<h:outputLabel value="Data de nascimento:" for="dt_nasc"></h:outputLabel>
+				<p:inputText size="50" id="dt_nasc" value="#{administradorMB.administrador.dt_nasc}"
+					required="true" requiredMessage="O Campo data de mascimento é obrigatório."></p:inputText>
+					
+								<h:outputLabel value="Telefone:" for="telefone"></h:outputLabel>
+				<p:inputText size="50" id="telefone" value="#{administradorMB.administrador.telefone}"
+					required="true" requiredMessage="O Campo telefone é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="CEP:" for="cep"></h:outputLabel>
+				<p:inputText size="50" id="cep" value="#{administradorMB.administrador.celular}"
+					required="true" requiredMessage="O Campo cep é obrigatório."></p:inputText>
+						
+					<h:outputLabel value="Cidade:" for="cidade"></h:outputLabel>
+				<p:inputText size="50" id="cidade" value="#{administradorMB.administrador.cidade}"
+					required="true" requiredMessage="O Campo cidade é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Bairro:" for="bairro"></h:outputLabel>
+				<p:inputText size="50" id="bairro" value="#{administradorMB.administrador.bairro}"
+					required="true" requiredMessage="O Campo bairro é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Estado:" for="estado"></h:outputLabel>
+				<p:inputText size="50" id="estado" value="#{administradorMB.administrador.estado}"
+					required="true" requiredMessage="O Campo estado é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Numero:" for="numero"></h:outputLabel>
+				<p:inputText size="50" id="numero" value="#{administradorMB.administrador.numero}"
+					required="true" requiredMessage="O Campo numero é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Complemento" for="complemento"></h:outputLabel>
+				<p:inputText size="50" id="complemento" value="#{administradorMB.administrador.complemento}"
+					required="true" requiredMessage="O Campo complemento é obrigatório."></p:inputText>
+					
+
+				<f:facet name="footer">
+					<h:panelGroup layout="block" style="text-align: center">
+						<p:commandButton ajax="false" id="btnSalvar" action="#{administradorMB.acaoSalvar}"
+							value="Salvar"></p:commandButton>
+						<p:commandButton ajax="false" id="btnCancelar" action="#{administradorMB.acaoCancelar}"
+							immediate="true" value="Cancelar"></p:commandButton>
+					</h:panelGroup>
+				</f:facet>
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

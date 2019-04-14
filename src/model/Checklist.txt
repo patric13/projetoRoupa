@@ -1,0 +1,75 @@
+-----------------------------------------------------------------------------------------------------------------------
+1) Crie a classe e indique que ela implementa as seguintes interfaces:
+	* IDados --> Para uso dos DAOs
+	* Comparable<____> --> Para ordenação em SortedSets
+	* Serializable --> Para serialização
+	* IDadosParaTabela --> Para exibição dos dados em interfaces de tabela Ex. Classe Empregado: Listamos o cpf do 
+	empreagado , o nome do empregado, e o nome do departamento do empregado na tabela da interface gráfica  
+	public Object[] getData() {
+		return new Object[] { this.cpf, this.nome, this.depto.getNome() };
+	}
+	
+	
+-----------------------------------------------------------------------------------------------------------------------
+2) Coloque os atributos modelados e o atributos de relacionamento. Não esqueça dos métodos vinculados a estes atributos,
+pois são eles que montam a estrutura de dados entre os objetos.
+
+relacionamento n-ário: métodos adicionar____ e remover____
+relacionamento unário: método set___
+
+Nos relacionamentos n-ários, os atributos de coleção serão declarados como Set<xxxxxx>. Os objetos de coleção serão sempre TreeSet<xxxxxxx>
+
+Ex.Classe Departamento
+	
+	Declaração de atributo: private Set<Empregado> listaEmpregados;	
+	No Construtor: this.listaEmpregados = new TreeSet<Empregado>();
+
+-----------------------------------------------------------------------------------------------------------------------
+3) Crie dois construtores: um com assinatura vazia e outro com a assinatura necessária para inicializar os atributos do 
+objeto recém-criado. O método construtor não deverá fazer atribuição direta a nenhum atributo. Sempre deverá utilizar o método set_______
+vinculado ao atributo
+
+Ex. construtor Empregado
+	Errado:  this.cpf = cpf; 
+	Correto: this.setCpf(cpf);
+
+-----------------------------------------------------------------------------------------------------------------------
+4) Para cada atributo das classe do modelo, crie as regras de validação. Em geral, 
+todos os atributos tem alguma regra de validação. Crie assim um método "validar_____" para verificar
+a validade do valor. O método deve ser public static e poderá disparar (throws) DadosException.  Coloque também a 
+anotação @RegraDeDominio
+
+Ex. validarCpf (classe Empregado)
+
+@RegraDeDominio
+public static void validarCpf(String cpf) throws DadosException {
+	if(cpf == null || cpf.length() == 0) 
+		throw new DadosException("O CPF não pode ser nulo!");
+	for(int i = 0; i < cpf.length(); i++)
+		if(!Character.isDigit(cpf.charAt(i)))
+			throw new DadosException("O CPF só deve digitos!");		
+	if(cpf.length() != TAMANHO_CPF)
+		throw new DadosException("O CPF deve ter " + TAMANHO_CPF + " digitos!");		
+}
+
+-----------------------------------------------------------------------------------------------------------------------
+5) Coloque em todos os métodos set_____ a chamada ao método validar______
+
+Ex.
+public void setCpf(String cpf) throws DadosException {
+	validarCpf(cpf);
+	this.cpf = cpf;
+}
+
+-----------------------------------------------------------------------------------------------------------------------
+6) Nunca escrever literais no código. Sempre criar e utilizar constantes
+
+Ex. 	public static final int TAMANHO_CPF = 11;  
+
+Errado:  	if(cpf.length() != 11)
+Correto:	if(cpf.length() != TAMANHO_CPF)
+
+-----------------------------------------------------------------------------------------------------------------------
+7) Implemente o método toString
+
+	

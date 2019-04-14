@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+
+	<ui:define name="titulo">Autenticação</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<p:panel header="Digite seu usuário e senha" style="width: 400px">
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Login:" for="login"></h:outputLabel>
+					<p:inputText id="login" value="#{LoginMB.login}" required="true"
+						requiredMessage="O Campo Login é obrigatório."></p:inputText>
+
+					<h:outputLabel value="Senha:" for="senha"></h:outputLabel>
+					<p:password feedback="false" id="senha" value="#{LoginMB.senha}"
+						required="true" requiredMessage="O Campo Senha é obrigatório."></p:password>
+
+					<f:facet name="footer">
+						<h:panelGroup layout="block" style="text-align: center">
+
+							<!-- <p:captcha id="codigoImg" label="Captcha" language="pt"
+								theme="white"
+								requiredMessage="As palavras da imagem não foram digitadas." />  -->
+							<br />
+							<p:commandButton ajax="false" id="btnEnviar"
+								action="#{LoginMB.acaoAutenticar}" value="Enviar"></p:commandButton>
+
+						</h:panelGroup>
+					</f:facet>
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

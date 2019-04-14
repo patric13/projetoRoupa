@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+	<ui:define name="titulo">Cadastro de Roupas</ui:define>
+
+	<ui:define name="opcoesMenu">
+		<p:commandButton ajax="false" type="push" value="Incluir nova Roupa"
+			action="#{roupaMB.acaoAbrirInclusao}" immediate="true"
+			image="ui-icon-document" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form">
+
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Filtrar grupo Roupa:" for="grupo"></h:outputLabel>
+				<h:selectOneListbox id="grupo" value="#{roupaMB.filtroGrupo}"
+					size="1" >
+					<f:selectItem itemLabel="Selecione..."></f:selectItem>
+					<f:selectItems value="#{roupaMB.grupos}" var="grupo"
+						itemLabel="#{grupo.descricao}"></f:selectItems>
+				</h:selectOneListbox>
+				<p:commandButton ajax="false" update="lista" id="btnFiltrar"
+						action="#{roupaMB.acaoListar()}" value="Filtrar"></p:commandButton>
+			</h:panelGrid>
+
+			<br />
+			<p:dataTable id="lista" var="item" value="#{roupaMB.roupas}"
+				paginator="true" rows="3" rowsPerPageTemplate="5,10,15"
+				selectionMode="single" rendered="#{not empty roupaMB.roupas}">
+
+				<f:facet name="header">
+					<h:outputText value="Lista de Roupas:" />
+				</f:facet>
+				
+				<p:column sortBy="#{item.grupo.descricao}">
+					<f:facet name="header">
+						<h:outputText value="Grupo" />
+					</f:facet>
+					<h:outputText value="#{item.grupo}" />
+				</p:column>
+				
+				<p:column sortBy="#{item.descricao}">
+					<f:facet name="header">
+						<h:outputText value="Descrição" />
+					</f:facet>
+					<h:outputText value="#{item.descricao}" />
+				</p:column>
+
+				
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Tamanho" />
+					</f:facet>
+					<h:outputText value="#{item.tamanho}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Cor" />
+					</f:facet>
+					<h:outputText value="#{item.cor}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Tamanho" />
+					</f:facet>
+					<h:outputText value="#{item.tamanho}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Marca" />
+					</f:facet>
+					<h:outputText value="#{item.marca}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Ações" />
+					</f:facet>
+					<h:panelGroup>
+						<p:commandButton ajax="false" type="push" value="Alterar"
+							action="#{roupaMB.acaoAbrirAlteracao}" immediate="true"
+							image="ui-icon-pencil">
+							<f:param value="#{item.id}" name="itemId" />
+						</p:commandButton>
+
+						<p:commandButton type="button" value="Excluir"
+							onclick="conf#{item.id}.show()" image="ui-icon-close">
+						</p:commandButton>
+
+						<p:confirmDialog message="Deseja excluir esta roupa?"
+							showEffect="bounce" hideEffect="explode" 
+							header="Confirmação de Exclusão" severity="alert"
+							widgetVar="conf#{item.id}">
+
+							<p:commandButton ajax="false" type="push" value="Sim"
+								action="#{roupaMB.acaoExcluir}" immediate="true"
+								image="ui-icon-check">
+								<f:param value="#{item.id}" name="itemId" />
+							</p:commandButton>
+
+							<p:commandButton value="Não" onclick="conf#{item.id}.hide()"
+								type="button" image="ui-icon-close" />
+						</p:confirmDialog>
+					</h:panelGroup>
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

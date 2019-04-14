@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+	<ui:define name="titulo">Editar ResponsavelEmpresa</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<h:inputHidden id="idUsuario" value="#{responsavelEmpresaMB.responsavelEmpresa.id}" />
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="CPF:" for="cpf"></h:outputLabel>
+				<p:inputText size="50" id="cpf" value="#{responsavelEmpresaMB.responsavelEmpresa.cpf}"
+					required="true" requiredMessage="O Campo cpf é obrigatório."></p:inputText>
+
+					<h:outputLabel value="Nome:" for="nome"></h:outputLabel>
+				<p:inputText size="50" id="nome" value="#{responsavelEmpresaMB.responsavelEmpresa.nome}"
+					required="true" requiredMessage="O Campo nome é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Email" for="email"></h:outputLabel>
+				<p:inputText size="50" id="email" value="#{responsavelEmpresaMB.responsavelEmpresa.email}"
+					required="true" requiredMessage="O Campo Email é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Data de Nascimento:" for="dt_nasc"></h:outputLabel>
+				<p:inputText size="50" id="dt_nasc" value="#{responsavelEmpresaMB.responsavelEmpresa.dt_nasc}"
+					required="true" requiredMessage="O Campo data de nascimento é obrigatório."></p:inputText>
+					<h:outputLabel value="Master ?"  rendered="#{HomeMB.admin}"></h:outputLabel>
+					<p:selectBooleanCheckbox value="#{responsavelEmpresaMB.responsavelEmpresa.master}" rendered="#{HomeMB.admin}"/>
+					
+					
+					<h:outputLabel value="Selecione a Empresa:" for="empresa"  rendered="#{HomeMB.admin}"></h:outputLabel>		 
+      
+  <p:selectOneMenu id="emp" value="#{responsavelEmpresaMB.responsavelEmpresa.empresa}"  effect="fold" converter="empresa-converter" rendered="#{HomeMB.admin}">
+  <f:selectItem itemLabel="-Selecione um...." itemValue=""/> 
+            <f:selectItems value="#{responsavelEmpresaMB.empresas}" var="empresa" itemLabel="#{empresa.cnpj}" itemValue="#{empresa.cnpj}"/>            
+        </p:selectOneMenu>
+					
+					
+					<h:outputLabel value="CEP:" for="cep"></h:outputLabel>
+				<p:inputText size="50" id="cep" value="#{responsavelEmpresaMB.responsavelEmpresa.cep}"
+					required="true" requiredMessage="O Campo cep é obrigatório."></p:inputText>
+						
+					<h:outputLabel value="Telefone:" for="telefone"></h:outputLabel>
+				<p:inputText size="50" id="telefone" value="#{responsavelEmpresaMB.responsavelEmpresa.telefone}"
+					required="true" requiredMessage="O Campo telefone é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Celular:" for="celular"></h:outputLabel>
+				<p:inputText size="50" id="celular" value="#{responsavelEmpresaMB.responsavelEmpresa.celular}"
+					required="true" requiredMessage="O Campo celular é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Bairro:" for="bairro"></h:outputLabel>
+				<p:inputText size="50" id="bairro" value="#{responsavelEmpresaMB.responsavelEmpresa.bairro}"
+					required="true" requiredMessage="O Campo bairro é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Cidade:" for="cidade"></h:outputLabel>
+				<p:inputText size="50" id="cidade" value="#{responsavelEmpresaMB.responsavelEmpresa.cidade}"
+					required="true" requiredMessage="O Campo cidade é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Logradouro:" for="logradouro"></h:outputLabel>
+				<p:inputText size="50" id="logradouro" value="#{responsavelEmpresaMB.responsavelEmpresa.logradouro}"
+					required="true" requiredMessage="O Campo logradouro é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Numero:" for="numero"></h:outputLabel>
+				<p:inputText size="50" id="numero" value="#{responsavelEmpresaMB.responsavelEmpresa.numero}"
+					required="true" requiredMessage="O Campo numero é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Estado" for="estado"></h:outputLabel>
+				<p:inputText size="50" id="estado" value="#{responsavelEmpresaMB.responsavelEmpresa.estado}"
+					required="true" requiredMessage="O Campo complemento é obrigatório."></p:inputText>
+					
+						<h:outputLabel value="Complemento" for="complemento"></h:outputLabel>
+				<p:inputText size="50" id="complemento" value="#{responsavelEmpresaMB.responsavelEmpresa.complemento}"
+					required="true" requiredMessage="O Campo complemento é obrigatório."></p:inputText>
+					
+
+				<f:facet name="footer">
+					<h:panelGroup layout="block" style="text-align: center">
+						<p:commandButton ajax="false" id="btnSalvar" action="#{responsavelEmpresaMB.acaoSalvar}"
+							value="Salvar"></p:commandButton>
+						<p:commandButton ajax="false" id="btnCancelar" action="#{responsavelEmpresaMB.acaoCancelar}"
+							immediate="true" value="Cancelar"></p:commandButton>
+					</h:panelGroup>
+				</f:facet>
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

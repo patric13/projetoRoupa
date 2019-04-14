@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+	<ui:define name="titulo">Cadastro de Vagas</ui:define>
+
+	<ui:define name="opcoesMenu">
+		<p:commandButton ajax="false" type="push" value="Incluir Vaga"
+			action="#{cadastroVagasMB.acaoAbrirInclusao}" immediate="true"
+			image="ui-icon-document" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		
+		
+		<h:form id="form">
+    <p:dataTable id="emps" var="vaga" value="#{cadastroVagasMB.vagas}" rowKey="#{vaga.id}"
+                 selection="#{cadastroVagasMB.selecionada}" selectionMode="single" >
+        <f:facet name="header">
+           Clique com o botão direito para ver o menu
+        </f:facet>
+          <p:column headerText="descricao">
+            <h:outputText value="#{vaga.descricao}" />
+        </p:column>
+        <p:column headerText="Quantidade">
+            <h:outputText value="#{vaga.qtd}" />
+        </p:column>
+    
+      
+    </p:dataTable> 
+ 
+    <p:contextMenu for="emps">
+        <p:menuitem value="Detalhes" update="responsavelEmpresaDetail" icon="ui-icon-search" oncomplete="PF('responsavelEmpresaDialog').show()"/>
+        <p:menuitem value="Delete" update="emps" icon="ui-icon-close" action="#{cadastroVagasMB.acaoAbrirExclusao}"/>
+    </p:contextMenu>
+ 
+    <p:dialog header="Detalhes de responsavelEmpresa" widgetVar="responsavelEmpresaDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="responsavelEmpresaDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" columnClasses="label,value">
+                <f:facet name="header">
+                   
+                </f:facet>
+				 <h:outputText value="Id:" />
+               	 <h:outputText value="#{cadastroVagasMB.selecionada.id}" />
+ 				 <h:outputText value="Descrição:" />
+               	 <h:outputText value="#{cadastroVagasMB.selecionada.descricao}" />
+               	  <h:outputText value="Tipo:" />
+               	 <h:outputText value="#{cadastroVagasMB.selecionada.tipo}" />
+               	  <h:outputText value="Quantidade:" />
+               	 <h:outputText value="#{cadastroVagasMB.selecionada.qtd}" />
+               	  <h:outputText value="Salario:" />
+               	 <h:outputText value="#{cadastroVagasMB.selecionada.pSalario}" />
+               	  <h:outputText value="Horario de serviço:" />
+               	 <h:outputText value="#{cadastroVagasMB.selecionada.hTrabalho}" />
+               	  <h:outputText value="Data" />
+               	 <h:outputText value="#{cadastroVagasMB.selecionada.data}" />
+               	  <h:outputText value="Disponivel:" />
+               	 <h:outputText value="#{cadastroVagasMB.selecionada.disponivel}" />
+ 		
+               	 
+               	 <p:commandButton ajax="false" type="push" value="alterar" action="#{cadastroVagasMB.acaoAbrirAlteracao}" ></p:commandButton>
+ 
+ 
+              
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+</h:form>
+		
+		
+		
+	</ui:define>
+
+</ui:composition>
+</html>

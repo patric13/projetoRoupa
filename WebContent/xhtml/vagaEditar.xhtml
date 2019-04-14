@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+	<ui:define name="titulo">Editar vaga</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<h:inputHidden id="idUsuario" value="#{vagaMB.vaga.id}" />
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="Descrição:" for="descricao"></h:outputLabel>
+				<p:inputTextarea rows="3" cols="50" counter="display" maxlength="120" counterTemplate="{0} characters. " autoResize="false" 
+				 id="descricao" value="#{vagaMB.vaga.descricao}" required="true" requiredMessage="O Campo descrição é obrigatório." />
+<h:outputText value="       " /><h:outputText id="display" />
+ 
+<h:outputLabel value="Quantidade Vagas:" for="quantidade"></h:outputLabel>
+				<p:inputText size="50" id="quantidade" value="#{vagaMB.vaga.qtd}"
+					required="true" requiredMessage="O Campo quantidade é obrigatório."></p:inputText>
+					
+					
+					<h:outputLabel value="Salario:" for="salario"></h:outputLabel>
+				<p:inputText size="50" id="salario" value="#{vagaMB.vaga.pSalario}"
+					required="true" requiredMessage="O Campo salario é obrigatório."/>
+					
+					
+					<h:outputLabel value="Jornada de trabalho:" for="hTrabalho"></h:outputLabel>
+				<p:inputText size="50" id="hTrabalho" value="#{vagaMB.vaga.hTrabalho}"
+					required="true" requiredMessage="O Campo salario é obrigatório."></p:inputText>
+					
+							<h:outputLabel value="Selecione a Area de atuação" for="Area"></h:outputLabel>
+						 
+        <p:selectOneMenu id="res" value="#{vagaMB.vaga.tipo}"  effect="fold"  >
+       	 
+            <f:selectItems value="#{vagaMB.tipoVaga}" var="tipoVaga" itemLabel="#{tipoVaga.nome}" itemValue="#{tipoVaga}"/>            
+        </p:selectOneMenu>
+            
+            <h:outputLabel value="Disponivel :"></h:outputLabel>
+            <p:selectBooleanCheckbox value="#{vagaMB.vaga.disponivel}">
+        </p:selectBooleanCheckbox>
+					
+					<h:outputLabel value="CEP:" for="cep"></h:outputLabel>
+				<p:inputText size="20" id="cep" value="#{vagaMB.vaga.cep}"
+					required="true" requiredMessage="O Campo cep é obrigatório."></p:inputText>
+						
+					<h:outputLabel value="Cidade:" for="cidade"></h:outputLabel>
+				<p:inputText size="10" id="cidade" value="#{vagaMB.vaga.cidade}"
+					required="true" requiredMessage="O Campo cidade é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Bairro:" for="bairro"></h:outputLabel>
+				<p:inputText size="15" id="bairro" value="#{vagaMB.vaga.bairro}"
+					required="true" requiredMessage="O Campo bairro é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Estado:" for="estado"></h:outputLabel>
+				<p:inputText size="10" id="estado" value="#{vagaMB.vaga.estado}"
+					required="true" requiredMessage="O Campo estado é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Numero:" for="numero"></h:outputLabel>
+				<p:inputText size="15" id="numero" value="#{vagaMB.vaga.numero}"
+					required="true" requiredMessage="O Campo numero é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Complemento" for="complemento"></h:outputLabel>
+				<p:inputText size="30" id="complemento" value="#{vagaMB.vaga.complemento}"
+					required="true" requiredMessage="O Campo complemento é obrigatório."></p:inputText>
+			
+					<h:outputLabel value="Selecione a Empresa:" for="empresa" rendered="#{HomeMB.admin}"></h:outputLabel>		 
+        <p:selectOneMenu id="emp" value="#{vagaMB.vaga.empresa}"  effect="fold" editable="true" converter="empresa-converter" rendered="#{HomeMB.admin}">
+       
+            <f:selectItems value="#{vagaMB.empresas}" var="empresa" itemLabel="#{empresa.cnpj}" itemValue="#{empresa.id}"/>            
+        </p:selectOneMenu>
+
+				<f:facet name="footer">
+					<h:panelGroup layout="block" style="text-align: center">
+						<p:commandButton ajax="false" id="btnSalvar" action="#{vagaMB.acaoSalvar}"
+							value="Salvar"></p:commandButton>
+						<p:commandButton ajax="false" id="btnCancelar" action="#{vagaMB.acaoCancelar}"
+							immediate="true" value="Cancelar"></p:commandButton>
+					</h:panelGroup>
+				</f:facet>
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

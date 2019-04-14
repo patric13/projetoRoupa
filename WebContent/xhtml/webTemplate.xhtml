@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title><ui:insert name="titulo">Título</ui:insert>
+	</title>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+	<script type="text/javascript" src="../js/primefaces.js" />
+</h:head>
+
+<h:body>
+	<div id="pagina" align="center">
+		<p:panel style="width: 810px; padding: 3px; text-align: center">
+
+			<div id="cabecalho" align="center">
+				<ui:insert name="cabecalho" />
+
+				<h:form id="formHome">
+
+					<p:toolbar>
+						<p:toolbarGroup align="left">
+							<p:commandButton ajax="false" type="push" value="Início"
+								action="home" image="ui-icon-home"
+								rendered="#{LoginMB.autenticado}" />
+
+							<ui:insert name="opcoesMenu" />
+						</p:toolbarGroup>
+
+						<p:toolbarGroup align="right">
+							<h:outputText value="Usuário: "></h:outputText>
+							<h:outputText value="#{LoginMB.usuario.login}" styleClass="titulo"></h:outputText>
+							<p:commandButton ajax="false" type="push"
+								rendered="#{LoginMB.autenticado}" value="Sair"
+								action="#{LoginMB.acaoLogout}" icon="ui-icon ui-icon-close"/>
+							<p:commandButton ajax="false" type="push"
+								rendered="#{!LoginMB.autenticado}" value="Login" action="login" icon="ui-icon ui-icon-check" />
+						</p:toolbarGroup>
+
+					</p:toolbar>
+
+				</h:form>
+
+				<div id="divTitulo" align="left" class="tituloGrande">
+					<ui:insert name="titulo" />
+				</div>
+
+
+				<div align="left">
+					<p:messages id="msgs" showSummary="true" showDetail="false" />
+				</div>
+				<br />
+			</div>
+
+			<div id="conteudo" align="left">
+				<ui:insert name="conteudo" />
+			</div>
+
+			<f:facet name="footer">
+				<h:outputText value="&copy; Todos os direitos reservados."></h:outputText>
+				<ui:insert name="rodape" />
+			</f:facet>
+
+		</p:panel>
+	</div>
+</h:body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+	<ui:define name="titulo">Editar Grupo</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<h:inputHidden id="idUsuario" value="#{grupoMB.grupo.id}" />
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="Descricao:" for="descricao"></h:outputLabel>
+				<p:inputText size="50" id="descricao" value="#{grupoMB.grupo.descricao}"
+					required="true" requiredMessage="O Campo Descrição é obrigatório."></p:inputText>
+
+				<f:facet name="footer">
+					<h:panelGroup layout="block" style="text-align: center">
+						<p:commandButton ajax="false" id="btnSalvar" action="#{grupoMB.acaoSalvar}"
+							value="Salvar"></p:commandButton>
+						<p:commandButton ajax="false" id="btnCancelar" action="#{grupoMB.acaoCancelar}"
+							immediate="true" value="Cancelar"></p:commandButton>
+					</h:panelGroup>
+				</f:facet>
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

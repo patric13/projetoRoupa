@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+	<ui:define name="titulo">Cadastro de Grupos</ui:define>
+
+	<ui:define name="opcoesMenu">
+		<p:commandButton ajax="false" type="push" value="Incluir Nova grupo de Roupa"
+			action="#{grupoMB.acaoAbrirInclusao}" immediate="true"
+			image="ui-icon-document" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form">
+
+			<br />
+			<p:dataGrid var="item" value="#{grupoMB.grupos}" columns="1"
+				rows="1" layout="grid" showCaption="true" rendered="#{not empty grupoMB.grupos}">
+		
+
+				<f:facet name="header">
+					<h:outputText value="Lista de Grupos da Agenda:" />
+				</f:facet>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Descrição" />
+					</f:facet>
+					<h:outputText value="#{item.descricao}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Ações" />
+					</f:facet>
+					<h:panelGroup>
+						<p:commandButton ajax="false" type="push" value="Alterar"
+							action="#{grupoMB.acaoAbrirAlteracao}" immediate="true"
+							image="ui-icon-pencil">
+							<f:param value="#{item.id}" name="itemId" />
+						</p:commandButton>
+
+						<p:commandButton type="button" value="Excluir"
+							onclick="conf#{item.id}.show()" image="ui-icon-close">
+						</p:commandButton>
+
+						<p:confirmDialog message="Deseja excluir este registro?"
+							showEffect="bounce" hideEffect="explode" 
+							header="Confirmação de Exclusão" severity="alert"
+							widgetVar="conf#{item.id}">
+
+							<p:commandButton ajax="false" type="push" value="Sim"
+								action="#{grupoMB.acaoExcluir}" immediate="true"
+								image="ui-icon-check">
+								<f:param value="#{item.id}" name="itemId" />
+							</p:commandButton>
+
+							<p:commandButton value="Não" onclick="conf#{item.id}.hide()"
+								type="button" image="ui-icon-close" />
+						</p:confirmDialog>
+					</h:panelGroup>
+				</p:column>
+
+			</p:dataGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

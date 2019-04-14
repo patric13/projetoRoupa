@@ -1,0 +1,81 @@
+-----------------------------------------------------------------------------------------------------------------------
+1) Crie a classe CtrSessaoUsuario. O método main deverá estar nesta classe e deverá instanciar um objeto CtrSessaoUsuario e 
+iniciar a execução do programa.
+
+-----------------------------------------------------------------------------------------------------------------------
+2) Os atributos que o CtrSessaoUsuario deverá apresentar são: 
+	- 1 atributo para cada controlador de caso de uso
+	- 1 atributo para referenciar a UI (User Interface) Principal
+	
+-----------------------------------------------------------------------------------------------------------------------
+3) Os métodos presentes no CtrSessaoUsuario deverão ser:
+	- Construtor 
+	- public void iniciar: deverá apresentar a UI principal (guardando a referência para esta no atributo) e
+	                       executar os procedimentos de recuperação da serialização
+	- public void terminar: executar os procedimentos de serialização	
+	- 1 método para iniciar cada caso de uso
+	- 1 método para finalizar cada caso de uso	
+
+-----------------------------------------------------------------------------------------------------------------------
+4) Os controladores de caso de uso deverá ter um enumerado com os estados aos quais ele possa atravessar. No enumerado,
+você deverá ter um método chamado validarTransicaoStatus para verificar se as transições desejadas são válidas
+
+Ex: 		
+	public enum Status {
+		DISPONIVEL, INCLUINDO, EXCLUINDO, ALTERANDO, ENCERRADO;
+
+		public static void validarTransicaoStatus(Status anterior, Status novo) throws ControleException {
+			if(anterior == null && novo == DISPONIVEL || 
+			   anterior == DISPONIVEL && novo == INCLUINDO  || 
+			   anterior == DISPONIVEL && novo == EXCLUINDO  ||
+			   anterior == DISPONIVEL && novo == ALTERANDO  ||
+			   anterior == DISPONIVEL && novo == ENCERRADO  ||
+			   anterior == INCLUINDO  && novo == DISPONIVEL ||
+			   anterior == EXCLUINDO  && novo == DISPONIVEL ||
+			   anterior == ALTERANDO  && novo == DISPONIVEL)
+				return;
+			throw new ControleException(new ErroDeControle("Não se pode sair do estado " + (anterior==null?"NULO":anterior) + " e ir para o estado " + novo));
+		}
+	}
+	
+-----------------------------------------------------------------------------------------------------------------------
+5) Os controladores de caso de uso deverá ter os seguintes atributos
+
+	- referência para os controladores que podem chamá-lo 
+	
+			private CtrlSessaoUsuario       ctrlPrg;
+	
+	- referência para cada elemento de interface gráfica com a qual irá interagir. PROCURE SEMPRE UTILIZAR interface AO 
+	INVÉS DA CLASSE.
+
+			private UICadastroDepartamentos 	jCadastro;
+	
+	- referência para a Operação em execução (objeto do enumerado)	
+		
+			private Status status;	
+	
+	- Em geral, será necessário ter um atributo para cada DAO com o qual irá interagir e para o objeto de dados que 
+	está sendo manipulado  
+	
+			private IDAO<Projeto> dao = (IDAO<Projeto>)DAO.getDAO(Projeto.class);
+			private Projeto atual;
+			
+-----------------------------------------------------------------------------------------------------------------------
+6) Os controladores de caso de uso deverá ter os seguintes métodos
+
+	- Construtor: deve receber a referência para o controlador que o chama 
+	- public boolean iniciar(): inicia a execução do caso de uso	
+	- public boolean terminar(): termina a execução do caso de uso
+	
+	- Para cada estado do caso de uso, colocar um método de tratamento do estado.
+	
+		(Exemplos do CtrlManterEmpregados)
+	
+		public void iniciarCasoDeUsoIncluirDepartamento() 
+		public void terminarCasoDeUsoIncluirDepartamento() 
+		...
+		
+-----------------------------------------------------------------------------------------------------------------------
+7) Para cada controlador, gere uma interface que indique quais métodos estão presentes. SIGA A REGRA GERAL: SE HÁ 
+COMUNICAÇÂO ENTRE OBJETOS DE CAMADAS DIFERENTES, AS REFERÊNCIAS SEMPRE DEVEM SER BASEADAS EM INTERFACES.
+		

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+	<ui:define name="titulo">Editar Pessoa</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<h:inputHidden id="idRoupa" value="#{roupaMB.roupa.id}" />
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="Grupo:" for="grupo"></h:outputLabel>
+				<h:selectOneListbox id="grupo" value="#{roupaMB.roupa.grupo}"
+					size="1" >
+					<f:selectItems value="#{roupaMB.grupos}" var="grupo"
+						itemLabel="#{grupo.descricao}"></f:selectItems>
+				</h:selectOneListbox>
+
+				<h:outputLabel value="Descrição:" for="descricao"></h:outputLabel>
+				<p:inputText size="20" id="descricao" value="#{roupaMB.roupa.descricao}"
+					required="true" requiredMessage="O campo descrição é obrigatório."></p:inputText>
+
+				<h:outputLabel value="Tamanho" for="tamanho"></h:outputLabel>
+				<p:inputText id="tel" value="#{roupaMB.roupa.tamanho}"
+					required="true"
+					requiredMessage="O campo Tamanho é obrigatório."></p:inputText>
+
+				<h:outputLabel value="Cor" for="cor"></h:outputLabel>
+				<p:inputText id="cor" value="#{roupaMB.roupa.cor}"
+					required="true" requiredMessage="O campo Cor é obrigatório."></p:inputText>
+					
+					<h:outputLabel value="Marca:" for="marca"></h:outputLabel>
+				<p:inputText size="20" id="marca" value="#{roupaMB.roupa.marca}"
+					required="true" requiredMessage="O campo marca é obrigatório."></p:inputText>
+					
+						<h:outputLabel value="Quantidade:" for="quantidade"></h:outputLabel>
+				<p:inputText size="5" id="quantidade" value="#{roupaMB.roupa.quantidade}"
+					required="true" requiredMessage="O campo marca é obrigatório."></p:inputText>
+
+
+				<f:facet name="footer">
+					<h:panelGroup layout="block" style="text-align: center">
+						<p:commandButton ajax="false" id="btnSalvar"
+							action="#{roupaMB.acaoSalvar}" value="Salvar"></p:commandButton>
+						<p:commandButton ajax="false" id="btnCancelar"
+							action="#{roupaMB.acaoCancelar}" immediate="true"
+							value="Cancelar"></p:commandButton>
+					</h:panelGroup>
+				</f:facet>
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

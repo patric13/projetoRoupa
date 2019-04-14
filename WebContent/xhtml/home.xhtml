@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+	<ui:define name="titulo">Menu Principal</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+			<p:menu style="width: 280px" >
+				<p:submenu label="Opções do Cadastro" >
+					<p:menuitem value="Cadastro de Empresas"
+						action="#{HomeMB.iniciarCasoDeUsoManterEmpresas}" 
+						icon="ui-icon ui-icon-note" />
+							<p:menuitem value="Cadastro de ResponsavelEmpresas"
+						action="#{HomeMB.iniciarCasoDeUsoManterResponsavelEmpresas}" 
+						icon="ui-icon ui-icon-note" />
+						<p:menuitem value="Cadastro de Administradores 	"
+						action="#{HomeMB.iniciarCasoDeUsoManterAdministradores}" 
+						icon="ui-icon ui-icon-note" rendered="#{HomeMB.admin}" />
+						<p:menuitem value="Cadastro de Vagas "
+						action="#{HomeMB.iniciarCasoDeUsoManterVagas}" 
+						icon="ui-icon ui-icon-note" />
+					<p:menuitem value="Cadastro de Usuários"
+						action="#{userMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-person" rendered="#{HomeMB.admin}" />
+				</p:submenu>
+				
+				<p:submenu label="Fechar o Sistema">
+					<p:menuitem value="Sair"
+						action="#{LoginMB.acaoLogout}" ajax="false"
+						icon="ui-icon ui-icon-close" />
+				</p:submenu>
+			</p:menu>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

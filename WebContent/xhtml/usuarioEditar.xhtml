@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="webTemplate.xhtml">
+
+	<ui:define name="titulo">Editar Usuário</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<h:inputHidden id="idUsuario" value="#{userMB.usuario.id}" />
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="Login:" for="login"></h:outputLabel>
+				<p:inputText id="login" value="#{userMB.usuario.login}"
+					required="true" requiredMessage="O Campo Login é obrigatório."></p:inputText>
+
+				<h:outputLabel value="Senha:" for="senha"></h:outputLabel>
+				<p:password feedback="false" id="senha"
+					value="#{userMB.usuario.senha}" required="true"
+					requiredMessage="O Campo Senha é obrigatório."></p:password>
+					
+					<h:outputLabel value="Selecione a Pessoa:" for="pessoa"></h:outputLabel>
+						 
+        <p:selectOneMenu id="pes" value="#{userMB.usuario.pessoa}"  effect="fold" editable="true" converter="pessoa-converter" >
+        <f:selectItem itemLabel="-Selecione um...." itemValue=""/> 
+            <f:selectItems value="#{userMB.pessoas}" var="pessoa" itemLabel="#{pessoa.cpf}" itemValue="#{pessoa.id}"/>            
+        </p:selectOneMenu>
+            
+
+  <p:selectOneMenu id="emp" value="#{responsavelEmpresaMB.responsavelEmpresa.empresa}"  effect="fold" converter="empresa-converter" >
+  <f:selectItem itemLabel="-Selecione um curso" itemValue=""/> 
+            <f:selectItems value="#{responsavelEmpresaMB.empresas}" var="empresa" itemLabel="#{empresa.cnpj}" itemValue="#{empresa.id}"/>            
+        </p:selectOneMenu>
+
+
+
+				<f:facet name="footer">
+					<h:panelGroup layout="block" style="text-align: center">
+						<p:commandButton ajax="false" id="btnSalvar"
+							action="#{userMB.acaoSalvar}" value="Salvar"></p:commandButton>
+						<p:commandButton ajax="false" id="btnCancelar"
+							action="#{userMB.acaoCancelar}" immediate="true" value="Cancelar"></p:commandButton>
+					</h:panelGroup>
+				</f:facet>
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

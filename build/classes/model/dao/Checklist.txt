@@ -1,0 +1,3 @@
+-----------------------------------------------------------------------------------------------------------------------
+1) Altere a classe DAO para a serialização e recuperação dos objetos. Mexa nos métodos 
+inicializarDAOs() e fecharDAOs() para que haja um objeto DAO específico para cada classe do modelo.

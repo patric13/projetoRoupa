@@ -1,0 +1,40 @@
+@CHARSET "ISO-8859-1";
+
+
+.tituloGrande {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.textoGrande {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 15px;
+}
+
+.tituloMaior {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.textoMaior {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+.titulo,th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.texto,body,td,th,div {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.textoMinimo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}

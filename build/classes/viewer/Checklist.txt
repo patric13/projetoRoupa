@@ -1,0 +1,11 @@
+A responsabilidade dos objetos de interface é notificar ao controlador os eventos gerados pelo usuário. Nenhuma decisão 
+do que deve ser feito pelo sistema, fica codificada nas classes de interface com usuário (GUI).  
+
+-----------------------------------------------------------------------------------------------------------------------
+1) Neste pacote teremos somente as Interfaces (serviços) que serão implementadas pelas classes de GUI. Para cada tipo de GUI, crie 
+uma Interface (serviço).
+
+2) Toda Interface (serviço) associada a uma UI deverá ser especialização da interface UI.
+
+3) Não esqueça de editar o arquivo viewer.properties para que o ViewerManager possa recuperar suas classes durante a execução 
+(injeção de dependência) 

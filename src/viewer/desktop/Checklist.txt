@@ -1,0 +1,14 @@
+A responsabilidade dos objetos de interface é notificar ao controlador os eventos gerados pelo usuário. Nenhuma decisão 
+do que deve ser feito pelo sistema, fica codificada nas classes de interface com usuário (GUI).  
+
+-----------------------------------------------------------------------------------------------------------------------
+1) Toda classe de interface tem um atributo que referencia o Controlador de Caso de Uso que o gerencia. Esta referência 
+é obtida através do construtor da classe de interface gráfica. Se a UI puder ser chamada por vários controladores,
+fazer um construtor diferente para cada situação.
+
+ex. UIDepartamento é chamada pelos casos de uso IncluirDepartamento e AlterarDepartamento
+
+3) No momento que for desenhar as janelas, diga que o Layout é NULL
+
+4) Cada botão deverá ter uma callback no actionPerfomed. Gere sempre um método na janela que seja ativado no 
+actionPerformed
